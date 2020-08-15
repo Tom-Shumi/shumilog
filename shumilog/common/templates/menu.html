@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Menu|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/common/menu.css' %}">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style">
+            <h1 class="title">Menu</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 col-12 cmd_btn_div">
+                        <a class="btn btn-secondary cmd_btn" href="{% url 'movie:review_list' %}">Logging Movie　へ</a>
+                    </div>
+                    <div class="col-md-6 col-12 cmd_btn_div">
+                        <!-- <a class="btn btn-primary cmd_btn" href="#">Logging Restaurant　へ</a> -->
+                        <button class="btn btn-primary cmd_btn"
+                                onclick="$('#danger_msg').text('メンテナンス中です。。');$('#modal_danger_msg').modal('show'); return false;">
+                            Logging Restaurant　へ
+                        </button>
+                    </div>
+                </div>
+                <div class="box_memo break-word">
+                    <ul>
+                        <li>視聴・訪問した映画・レストランの感想を記録しておけます。</li>
+                        <li>登録した映画・レストランの一覧表示や検索ができます。</li>
+                        <li>気になる映画・レストランをメモしておけます。</li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="img-size" src="{% static 'img/memo.jpg' %}" alt="">
+                    <img class="img-size" src="{% static 'img/search.jpg' %}" alt="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_danger_msg.html' %}
+{% endblock %}

@@ -1,0 +1,135 @@
+[
+    {
+        "model": "movie.moviegenrem",
+        "pk": 12,
+        "fields": {
+            "movie_genre_name": "アドベンチャー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 14,
+        "fields": {
+            "movie_genre_name": "ファンタジー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 16,
+        "fields": {
+            "movie_genre_name": "アニメ"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 18,
+        "fields": {
+            "movie_genre_name": "ドラマ"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 27,
+        "fields": {
+            "movie_genre_name": "ホラー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 28,
+        "fields": {
+            "movie_genre_name": "アクション"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 35,
+        "fields": {
+            "movie_genre_name": "コメディ"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 36,
+        "fields": {
+            "movie_genre_name": "ヒストリー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 37,
+        "fields": {
+            "movie_genre_name": "西洋"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 53,
+        "fields": {
+            "movie_genre_name": "スリラー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 80,
+        "fields": {
+            "movie_genre_name": "クライム"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 99,
+        "fields": {
+            "movie_genre_name": "ドキュメンタリー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 878,
+        "fields": {
+            "movie_genre_name": "SF"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 9648,
+        "fields": {
+            "movie_genre_name": "ミステリー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 10402,
+        "fields": {
+            "movie_genre_name": "ミュージック"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 10749,
+        "fields": {
+            "movie_genre_name": "ロマンス"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 10751,
+        "fields": {
+            "movie_genre_name": "ファミリー"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 10752,
+        "fields": {
+            "movie_genre_name": "戦争"
+        }
+    },
+    {
+        "model": "movie.moviegenrem",
+        "pk": 10770,
+        "fields": {
+            "movie_genre_name": "TV映画"
+        }
+    }
+]

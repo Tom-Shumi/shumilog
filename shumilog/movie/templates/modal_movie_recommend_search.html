@@ -1,0 +1,52 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="modal_movie_recommend_search">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">オススメ映画 検索</h4>
+                </div>
+                <div class="card-body">
+                    <form name="movie_recommend_search_form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>映画タイトル</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.movie_title }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>公開日</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.released_date_from|add_class:"released_date_search" }}
+                                ～
+                                {{ form.released_date_to|add_class:"released_date_search" }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>ジャンル</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.movie_genre }}
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-dark clear_btn float-right" onclick="movie_recommend_search_clear(); return false;">
+                            クリア
+                        </button>
+                        <button type="button" class="btn btn-danger search_btn_modal float-right" onclick="movie_recommend_search(); return false;">
+                            検索
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

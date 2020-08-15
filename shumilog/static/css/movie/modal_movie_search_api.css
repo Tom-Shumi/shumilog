@@ -1,0 +1,17 @@
+.cell_cmd_btn{
+    width: 89px;
+}
+
+.table td {
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.td_movie_title{
+    width: 250px;
+}
+
+.tr_movie_search_table{
+    background-color: lemonchiffon;
+}

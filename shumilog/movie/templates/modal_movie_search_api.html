@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/modal_movie_search_api.css' %}">
+<div class="modal fade" id="modal_movie_search_api">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">検索結果</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" id="movie_search_table">
+                    </table>
+
+                    <button type="button" class="btn btn-dark float-right"
+                            onclick="$('#modal_movie_search_api').modal('hide');">
+                        閉じる
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

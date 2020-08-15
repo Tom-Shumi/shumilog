@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Movie Watch Later Create|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_watch_later_create.css' %}">
+<script src="{% static 'js/movie/movie_watch_later_create.js' %}"></script>
+<script src="{% static 'js/movie/movie_search_api.js' %}"></script>
+{% endblock %}
+
+{% block active_logging_movie %}active{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <h1 class="title">後で見る映画 登録</h1>
+            <div class="box_explain">
+                <details>
+                    <summary><b>後で見る予定の映画を登録できます。</b></summary>
+                    <br/>
+                    <p>[検索ボタン]<br/>映画タイトルを入力後、登録する映画を選択してください。</p><br/>
+                    <p>[クリアボタン]<br/>誤った映画を選択してしまった場合に押下し、再度映画を選択をしてください。</p><br/>
+                </details>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="box_form">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.movie_title.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            {{ form.movie_title }}
+                            <button class="btn btn-secondary cmd_btn" onclick="movieClear(); return false;">クリア
+                            </button>
+                            <button id="search_btn" class="btn btn-primary cmd_btn"
+                                    onclick="movieSearch(); return false;">検索
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong><label>映画ジャンル:</label></strong>
+                        </div>
+                        <div class="col-8">
+                            <label class="break-word" id="movie_genres"></label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong><label>あらすじ:</label></strong>
+                        </div>
+                        <div class="col-8">
+                            <label id="movie_summary"></label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="div_footer_btn">
+                        <button type="button" class="btn btn-warning regist_btn" onclick="showModal(); return false;">登録
+                        </button>
+                        <input type="submit" value="invisible_btn" id="invisible_btn">
+                        <a class="btn btn-dark cancel_btn" href="{% url 'movie:watch_later_list' %}">キャンセル</a>
+                    </div>
+                </div>
+                {{ form.movie_id_hidden.as_hidden }}
+                {{ form.movie_title_hidden.as_hidden }}
+                {{ form.released_date_hidden.as_hidden }}
+                {{ form.genre_ids_hidden.as_hidden }}
+                {{ form.movie_summary_hidden.as_hidden }}
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_movie_search_api.html' %}
+{% include 'modal_danger_msg.html' %}
+{% include 'modal_confirm.html' %}
+{% endblock %}

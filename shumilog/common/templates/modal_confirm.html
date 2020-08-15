@@ -1,0 +1,18 @@
+<div class="modal fade" id="modal_confirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal_confirm">
+            <div class="alert alert-success modal_confirm" role="alert">
+                <label id="confirm_msg">{{ confirm_msg }}</label>
+                <div>
+                    <button class="btn btn-success modal_btn" onclick="execute(); return false;">
+                        はい
+                    </button>
+                    <button class="btn btn-dark modal_btn" onclick="$('#modal_confirm').modal('hide');">
+                        いいえ
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" id="modal_exec_id" name="modal_exec_id">
+        </div>
+    </div>
+</div>

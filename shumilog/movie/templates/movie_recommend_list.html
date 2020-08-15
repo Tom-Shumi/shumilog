@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Movie Recommend List|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_recommend_list.css' %}">
+<script src="{% static 'js/movie/movie_recommend_list.js' %}"></script>
+{% endblock %}
+
+{% block active_logging_movie %}active{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <h1 class="title">オススメ映画 一覧</h1>
+            <div class="box_explain">
+                <details>
+                    <summary><b>高評価の映画が一覧表示されます。</b></summary>
+                    <br/>
+                    <p>[オススメ映画検索ボタン]<br/>映画タイトル・公開日・ジャンルを元に映画の検索ができます。</p><br/>
+                    <p>[後で見るボタン]<br/>自動的に後で見る映画に登録されます。</p><br/>
+                </details>
+            </div>
+            <div class="clearfix moving_btn_div">
+                <button type="button" class="btn btn-danger search_btn float-left"
+                        onclick="showSearchModal(); return false;">オススメ映画検索
+                </button>
+            </div>
+            <form name="movie_recommend_list_form">
+                {% csrf_token %}
+
+                <div class="box_form">
+                    {% if movie_recommend_list %}
+                    {% include 'pagination.html' %}
+                    <div class="row table_header_row">
+                        <div class="col-md-1 col-3 order3 table_header center">
+                            平均点数
+                        </div>
+                        <div class="col-md-3 col-12 order1 table_header">
+                            映画タイトル
+                        </div>
+                        <div class="col-md-2 col-5 order4 table_header center">
+                            公開日
+                        </div>
+                        <div class="col-md-2 col-12 order2 table_header">
+                            ジャンル
+                        </div>
+                        <div class="col-md-3 hide table_header">
+                            あらすじ
+                        </div>
+                        <div class="col-md-1 col-4 order5 table_header center">
+                            後で見る
+                        </div>
+                    </div>
+                    {% for movie_recommend in movie_recommend_list %}
+                    <div class="row table_body_row
+                        {% if not forloop.counter0|divisibleby:'2' %}
+                            table_body_even_row
+                        {% endif %}">
+                        <div class="col-md-1 col-3 order3 table_body right">
+                            {{ movie_recommend.movie_score_avg }}　点
+                        </div>
+                        <div class="col-md-3 col-12 order1 table_body">
+                            {{ movie_recommend.movie_title }}
+                        </div>
+                        <div class="col-md-2 col-5 order4 table_body right">
+                            {{ movie_recommend.released_date }}
+                        </div>
+                        <div class="col-md-2 col-12 order2 table_body">
+                            {% for movie_genre in movie_recommend.movie_genres.all %}
+                            {{ movie_genre.movie_genre_name }}
+                            {% if not forloop.last %}
+                            、
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-3 hide table_body">
+                            <span data-toggle="tooltip" title="{{ movie_recommend.movie_summary }}">
+                                {{ movie_recommend.movie_summary|default:"-"|truncatechars:10 }}
+                            </span>
+                        </div>
+                        <div class="col-md-1 col-4 order5 table_body center cmd_btn_div_b">
+                            <button class="btn btn-secondary cmd_btn"
+                                    onclick="showConfirmWatchLaterModal({{ movie_recommend.movie_id }}); return false;">
+                                後で見る
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% include 'pagination.html' %}
+                    {% else %}
+                    <div class="no_regist">オススメ映画がありません。</div>
+                    {% endif %}
+                    <div class="div_footer_btn">
+                        <a class="btn btn-dark back_btn" href="{% url 'movie:watch_later_list' %}">戻る</a>
+                    </div>
+                </div>
+                <input type="hidden" id="m_id" name="m_id">
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_movie_recommend_search.html' %}
+{% include 'modal_danger_msg.html' %}
+{% include 'modal_confirm.html' %}
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Movie Review List|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_review_list.css' %}">
+<script src="{% static 'js/movie/movie_review_list.js' %}"></script>
+{% endblock %}
+
+{% block active_logging_movie %}active{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <h1 class="title">映画 レビュー 一覧</h1>
+            <div class="box_explain">
+                <details>
+                    <summary><b>過去に視聴した映画が一覧表示されます。</b></summary>
+                    <br/>
+                    <p>[映画レビュー検索ボタン]<br/>視聴日・映画タイトル・点数を元に映画レビューの検索ができます。</p><br/>
+                    <p>[映画レビュー登録ボタン]<br/>映画レビューの登録が行えます。</p><br/>
+                    <p>[後で見る映画一覧ボタン]<br/>自分の気になる映画の登録や一覧表示ができます。</p><br/>
+                    <p>[各レビューの詳細ボタン]<br/>登録したレビューの詳細表示、編集が行えます。</p>
+                </details>
+            </div>
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 moving_btn_div_left">
+                        <button type="button" class="btn btn-danger search_btn float-left"
+                                onclick="showSearchModal(); return false;">映画レビュー検索
+                        </button>
+                        <a class="btn btn-primary float-left" href="{% url 'movie:review_create' %}">映画レビュー登録</a>
+                    </div>
+                    <div class="col-md-6 col-xs-12 moving_btn_div_right">
+                        <a class="btn btn-warning float-right" href="{% url 'movie:watch_later_list' %}">後で見る映画一覧</a>
+                    </div>
+                </div>
+            </div>
+            <form name="movie_review_list_form">
+                {% csrf_token %}
+                <div class="box_form">
+                    {% if movie_review_list %}
+                    {% include 'pagination.html' %}
+                    <div class="row table_header_row">
+                        <div class="col-md-2 col-6 table_header order2 center">
+                            視聴日
+                        </div>
+                        <div class="col-md-4 col-12 table_header order1">
+                            映画タイトル
+                        </div>
+                        <div class="col-md-1 col-2 table_header order3 center">
+                            点数
+                        </div>
+                        <div class="col-md-3 table_header hide">
+                            レビュー
+                        </div>
+                        <div class="col-md-1 col-2 table_header order4 center">
+                            詳細
+                        </div>
+                        <div class="col-md-1 col-2 table_header order5 center">
+                            削除
+                        </div>
+                    </div>
+                    {% for movie_review in movie_review_list %}
+                    <div class="row table_body_row
+                        {% if not forloop.counter0|divisibleby:'2' %}
+                            table_body_even_row
+                        {% endif %}">
+                        <div class="col-md-2 col-6 table_body order2 right">
+                            {{ movie_review.watched_date|date:"Y/m/j" }}
+                        </div>
+                        <div class="col-md-4 col-12 table_body order1">
+                            {{ movie_review.movie.movie_title }}
+                        </div>
+                        <div class="col-md-1 col-2 table_body order3 right">
+                            {{ movie_review.movie_score }}　点
+                        </div>
+                        <div class="col-md-3 table_body hide">
+                            <span data-toggle="tooltip" title="{{ movie_review.movie_review }}">
+                                    {{ movie_review.movie_review|default:"-"|truncatechars:10 }}
+                            </span>
+                        </div>
+                        <div class="col-md-1 col-2 table_body order4 center cmd_btn_div_a">
+                            <a class="btn btn-secondary cmd_btn"
+                               href="{% url 'movie:review_detail' movie_review.id %}">詳細
+                            </a>
+                        </div>
+                        <div class="col-md-1 col-2 table_body order5 center cmd_btn_div_b">
+                            <button class="btn btn-dark cmd_btn"
+                                    onclick="showConfirmDeleteModal({{ movie_review.id }}); return false;">削除
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% include 'pagination.html' %}
+                    {% else %}
+                    <div class="no_regist">映画レビューが登録されていません。</div>
+                    {% endif %}
+                    <div class="div_footer_btn">
+                        <a class="btn btn-dark back_btn" href="{% url 'common:menu' %}">戻る</a>
+                    </div>
+                </div>
+                <input type="hidden" id="r_id" name="r_id">
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_movie_review_search.html' %}
+{% include 'modal_danger_msg.html' %}
+{% include 'modal_confirm.html' %}
+{% endblock %}

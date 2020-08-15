@@ -1,0 +1,71 @@
+#id_movie_title {
+    width: 75%;
+    display: inline;
+}
+
+#id_watched_year {
+	width: 80px;
+	display: inline;
+	margin-bottom: 10px;
+}
+
+#id_watched_month {
+	width: 60px;
+	display: inline;
+	margin-bottom: 10px;
+}
+
+#id_watched_day {
+	width: 60px;
+	display: inline;
+	margin-bottom: 10px;
+}
+
+#id_movie_review_score {
+	width: 60px;
+	display: inline;
+}
+
+#id_movie_image {
+	padding: 3px;
+}
+
+.today_btn{
+	display:inline;
+	width:60px;
+	height:30px;
+	font-size:12px;
+	float:right;
+	margin-top:4px;
+}
+
+.cmd_btn{
+	display:inline;
+	width:65px;
+	height:30px;
+	font-size:12px;
+	float:right;
+	margin-top:4px;
+	margin-right:2px;
+	margin-left:2px;
+}
+
+.regist_btn{
+    width: 120px;
+    height: 40px;
+    margin: 15px;
+}
+
+.cancel_btn{
+    width: 120px;
+    height: 40px;
+    margin: 15px;
+}
+
+#invisible_btn {
+    display: none;
+}
+
+label{
+    margin: 0.5rem;
+}

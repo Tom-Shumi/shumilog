@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Shumi Log
+{% endblock %}
+
+{% block head %}
+<script src="{% static 'js/common/index.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container">
+            <h1 class="masthead-heading mb-0">Shumi Log</h1>
+            <h4 class="mb-0">趣味の記録を残せるサービス</h4>
+            <a href="{% url 'account_login' %}" class="btn btn-primary btn-xl rounded-pill mt-5">LOG IN</a>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+{% endblock %}
+
+{% block contents %}
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="{% static 'img/movie.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Logging Movie</h2>
+                    <p class="index_explain">映画の視聴履歴を記録できる。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="{% static 'img/restaurant.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h2 class="display-4">Logging Restaurant</h2>
+                    <p class="index_explain">訪問したレストランを記録できる。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="modal_primary_msg_show" value="{{ modal_primary_msg_show }}">
+{% include 'modal_primary_msg.html' %}
+{% endblock %}

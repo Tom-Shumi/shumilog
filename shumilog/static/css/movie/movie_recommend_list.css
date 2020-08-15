@@ -1,0 +1,28 @@
+.search_btn_modal{
+    width: 100px;
+    margin:0px 10px 0px 10px;
+}
+
+.clear_btn{
+    width: 100px;
+    margin:0px 10px 0px 10px;
+}
+
+.released_date_search{
+    width: 130px;
+    display: inline;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+label{
+    margin-top: 0.5rem;
+}
+
+.cmd_btn{
+    display:inline;
+	font-size:12px;
+	margin-top:4px;
+	margin-right:2px;
+	margin-left:2px;
+}

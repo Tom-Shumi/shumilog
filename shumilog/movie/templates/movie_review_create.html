@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Movie Review Create|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_review_create.css' %}">
+<script src="{% static 'js/movie/movie_review_create.js' %}"></script>
+<script src="{% static 'js/movie/movie_search_api.js' %}"></script>
+{% endblock %}
+
+{% block active_logging_movie %}active{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <h1 class="title">映画 レビュー 登録</h1>
+            <div class="box_explain">
+                <details>
+                    <summary><b>視聴した映画のレビューが登録できます。</b></summary>
+                    <br/>
+                    <p>[検索ボタン]<br/>映画タイトルを入力後、視聴した映画を選択してください。</p><br/>
+                    <p>[クリアボタン]<br/>誤った映画を選択してしまった場合に押下し、再度映画を選択をしてください。</p><br/>
+                    <p>[TODAYボタン]<br/>本日の日付が視聴日に入力されます。</p><br/>
+                </details>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="box_form">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.movie_title.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            {% ifequal wl_flg 0 %}
+                            {{ form.movie_title }}
+                            <button class="btn btn-secondary cmd_btn" onclick="movieClear(); return false;">クリア
+                            </button>
+                            <button id="search_btn" class="btn btn-primary cmd_btn"
+                                    onclick="movieSearch(); return false;">検索
+                            </button>
+                            {% else %}
+                            <label>{{ movie_title_wl }}</label>
+                            {% endifequal %}
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.watched_day.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            {{ form.watched_year }} 年 {{ form.watched_month }} 月 {{ form.watched_day }} 日
+                            <button class="btn btn-success today_btn"
+                                    onclick="inputToday(); return false;">TODAY
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.movie_review_score.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            <div class="evaluation evaluation_active">
+                                {% for i in i|rjust:5 %}
+                                <input type="radio" id="movie_review_score{{ forloop.revcounter }}"
+                                       name="movie_review_score" value="{{ forloop.revcounter }}"
+                                       {% ifequal forloop.revcounter 1 %} checked {% endifequal %}/>
+                                <label for="movie_review_score{{ forloop.revcounter }}"><span class="text">{{ forloop.revcounter }}</span>★</label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.movie_review.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            {{ form.movie_review }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>{{ form.movie_image.label_tag }}</strong>
+                        </div>
+                        <div class="col-8">
+                            {{ form.movie_image }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="div_footer_btn">
+                        <button type="button" class="btn btn-warning regist_btn" onclick="showModal(); return false;">登録
+                        </button>
+                        <input type="submit" value="invisible_btn" id="invisible_btn">
+                        <a class="btn btn-dark cancel_btn" href="{{ cancel_url }}">キャンセル</a>
+                    </div>
+                </div>
+                <input type="hidden" name="movie_id_hidden" id="id_movie_id_hidden" value="{{ movie_id_wl }}">
+                {{ form.movie_title_hidden.as_hidden }}
+                {{ form.released_date_hidden.as_hidden }}
+                {{ form.genre_ids_hidden.as_hidden }}
+                {{ form.movie_summary_hidden.as_hidden }}
+                <input type="hidden" name="wl_flg" id="id_wl_flg" value="{{ wl_flg }}">
+                <input type="hidden" name="wl_id" id="id_wl_id" value="{{ wl_id }}">
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_movie_search_api.html' %}
+{% include 'modal_danger_msg.html' %}
+{% include 'modal_confirm.html' %}
+{% endblock %}

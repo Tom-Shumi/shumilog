@@ -1,0 +1,250 @@
+body, #wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}
+.my-div-style {
+    margin-top:6rem;
+}
+
+.title {
+  position: relative;
+  padding: 0px 0px 0px 13px;
+}
+.title:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), #ffb2b2);
+  background: linear-gradient(to right, rgb(255, 186, 115), #ffb2b2);
+}
+
+.form_common{
+  padding: 0px 0px 0px 13px;
+}
+
+.box_form{
+    padding: 1em 1em 0.5em 1em;
+    margin: 1em 0;
+    background: white;
+    border-top: solid 5px rgb(255, 186, 115);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.box_memo{
+    position: relative;
+    background: #fff0cd;
+    box-shadow: 0px 0px 0px 5px #fff0cd;
+    border: dashed 2px white;
+    padding: 0.2em 0.5em;
+    color: #454545;
+    margin: 0.5em;
+}
+.box_memo:after{
+    position: absolute;
+    content: '';
+    right: -7px;
+    top: -7px;
+    border-width: 0 15px 15px 0;
+    border-style: solid;
+    border-color: #ffdb88 #fff #ffdb88;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.box_explain {
+    padding: 0.5em 1em;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+    margin: 5px 5px 10px 5px;
+}
+.box_explain p {
+    margin: 0;
+    padding: 0;
+}
+
+.div_pagination{
+    text-align: right;
+}
+
+.modal_confirm{
+    height: 120px;
+    text-align: center;
+    margin: 0px;
+}
+
+.modal_btn{
+    display:inline;
+	width:120px;
+	height:35px;
+	font-size:12px;
+	margin-top:10px;
+	margin-right:10px;
+	margin-left:10px;
+}
+
+.modal_msg{
+    text-align: center;
+}
+
+.no_regist{
+    text-align: center;
+    margin: 10px 15px 15px 15px;
+    font-size: 20px;
+}
+
+.pagination_right {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.evaluation{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+.evaluation input[type='radio']{
+	display: none;
+}
+.evaluation label{
+	position: relative;
+	padding: 10px 0px 0px 10px;
+	color: gray;
+	cursor: pointer;
+	font-size: 20px;
+}
+.evaluation label .text{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	padding-left: 10px;
+	text-align: center;
+	font-size: 12px;
+	color: gray;
+}
+.evaluation_active label:hover,
+.evaluation_active label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+	color: #ffcc00;
+}
+
+.div_footer_btn{
+    text-align: center;
+}
+
+.back_btn, .cancel_btn{
+    width: 120px;
+    height: 40px;
+    margin: 15px;
+}
+
+.tr_list_table{
+    background-color: lemonchiffon;
+}
+
+.index_explain{
+    font-size: 14px;
+}
+
+.moving_btn_div{
+    margin: 0px 10px 0px 10px;
+}
+
+.moving_btn_div_left{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.moving_btn_div_right{
+    margin: 5px 0px 0px 0px;
+    padding-right: 25px;
+}
+
+body{
+    word-break: keep-all;
+}
+
+.table_header{
+  display: table-cell;
+  font-weight: bold;
+  padding: 5px;
+  border: 1px solid #dee2e6;
+  border-right: 0px;
+  border-bottom: 0px;
+  background-color: lemonchiffon;
+}
+
+.table_header_row{
+    margin: 0px;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table_body{
+  display: table-cell;
+  padding: 10px 5px 5px 5px;
+  border: 1px solid #dee2e6;
+  border-right: 0px;
+  border-bottom: 0px;
+}
+
+.table_body_row{
+    margin: 0px;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table_body_even_row{
+    background-color: ivory;
+}
+
+.cmd_btn_div_a{
+    padding: 11px 5px 5px 5px !important;
+}
+
+.cmd_btn_div_b{
+    padding: 5px 5px 5px 5px !important;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.break-word{
+    word-break: break-word;
+}
+
+#movie_search_table{
+    word-break: normal;
+}
+
+@media screen and (max-width: 768px) {
+    .hide {
+        display: none;
+    }
+    .order1 {
+        order: 1;
+    }
+    .order2 {
+        order: 2;
+    }
+    .order3 {
+        order: 3;
+    }
+    .order4 {
+        order: 4;
+    }
+    .order5 {
+        order: 5;
+    }
+}

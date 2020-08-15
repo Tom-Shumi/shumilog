@@ -1,0 +1,91 @@
+{% load static %}
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/common/one-page-wonder.min.css' %}" rel="stylesheet">
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+    <!--shumilog -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/common.css' %}">
+    <script src="{% static 'js/common/common.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand"
+               href="{% if user.is_authenticated %}{% url 'common:menu' %}{% else %}{% url 'common:index' %}{% endif %}">Shumi
+                Log</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% block active_logging_movie %}{% endblock %}">
+                        <a class="nav-link" href="{% url 'movie:review_list' %}">LOGGING MOVIE</a>
+                    </li>
+                    <li class="nav-item {% block active_restaurant_list %}{% endblock %}">
+                        <a class="nav-link" href="#">LOGGING RESTAURANT</a>
+                    </li>
+                </ul>
+                {% endif %}
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item {% block active_signup %}{% endblock %}">
+                        <a class="nav-link" href="{% url 'auth:signup' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item {% block active_login %}{% endblock %}">
+                        <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block header %}{% endblock %}
+
+    {% block contents %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+        <div class="container">
+            <p class="m-0 text-center text-white small">Copyright &copy; Shumi Log</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</div>
+</body>
+
+
+</html>

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Movie Watch Later List|Shumi log
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_watch_later_list.css' %}">
+<script src="{% static 'js/movie/movie_watch_later_list.js' %}"></script>
+{% endblock %}
+
+{% block active_logging_movie %}active{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style w-100">
+            <h1 class="title">後で見る映画 一覧</h1>
+            <div class="box_explain">
+                <details>
+                    <summary><b>後で見る予定の映画が一覧表示されます。</b></summary>
+                    <br/>
+                    <p>[後で見る映画登録ボタン]<br/>後で見る映画の登録が行えます。</p><br/>
+                    <p>[オススメ映画一覧ボタン]<br/>他ユーザが、高評価した映画を一覧表示できます。</p><br/>
+                    <p>[レビュー登録ボタン]<br/>映画の視聴後、映画の感想や評価を登録できます。</p><br/>
+                </details>
+            </div>
+            <div class="clearfix moving_btn_div">
+                <a class="btn btn-primary float-left " href="{% url 'movie:watch_later_create' %}">後で見る映画登録</a>
+                <a class="btn btn-warning float-right " href="{% url 'movie:recommend_list' %}">オススメ映画一覧</a>
+            </div>
+            <form name="movie_watch_later_list_form">
+                {% csrf_token %}
+
+                <div class="box_form">
+                    {% if movie_watch_later_list %}
+                    {% include 'pagination.html' %}
+                    <div class="row table_header_row">
+                        <div class="col-md-2 col-4 order3 table_header center">
+                            登録日
+                        </div>
+                        <div class="col-md-3 col-12 order1 table_header">
+                            映画タイトル
+                        </div>
+                        <div class="col-md-2 col-12 order2 table_header">
+                            ジャンル
+                        </div>
+                        <div class="col-md-2 hide table_header">
+                            あらすじ
+                        </div>
+                        <div class="col-md-2 col-4 order4 table_header center">
+                            レビュー登録
+                        </div>
+                        <div class="col-md-1 col-4 order5 table_header center">
+                            削除
+                        </div>
+                    </div>
+                    {% for movie_watch_later in movie_watch_later_list %}
+                    <div class="row table_body_row
+                        {% if not forloop.counter0|divisibleby:'2' %}
+                            table_body_even_row
+                        {% endif %}">
+                        <div class="col-md-2 col-4 order3 table_body right">
+                            {{ movie_watch_later.created_date|date:"Y/m/j" }}
+                        </div>
+                        <div class="col-md-3 col-12 order1 table_body">
+                            {{ movie_watch_later.movie.movie_title }}
+                        </div>
+                        <div class="col-md-2 col-12 order2 table_body">
+                            {% for movie_genre in movie_watch_later.movie.movie_genres.all %}
+                            {{ movie_genre.movie_genre_name }}
+                            {% if not forloop.last %}
+                            、
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-2 table_body hide">
+                            <span data-toggle="tooltip" title="{{ movie_watch_later.movie.movie_summary }}">
+                                {{ movie_watch_later.movie.movie_summary|default:"-"|truncatechars:10 }}
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-4 table_body order4 center cmd_btn_div_b">
+                            <button class="btn btn-secondary cmd_btn"
+                                    onclick="displayMovieCreateView({{ movie_watch_later.id }})">レビュー登録
+                            </button>
+                        </div>
+                        <div class="col-md-1 col-4 table_body order5 center cmd_btn_div_b">
+                            <button class="btn btn-dark cmd_btn"
+                                    onclick="showConfirmDeleteModal({{ movie_watch_later.id }}); return false;">削除
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% include 'pagination.html' %}
+                    {% else %}
+                    <div class="no_regist">後で見る映画が登録されていません。</div>
+                    {% endif %}
+                    <div class="div_footer_btn">
+                        <a class="btn btn-dark back_btn" href="{% url 'movie:review_list' %}">戻る</a>
+                    </div>
+                </div>
+                <input type="hidden" id="wl_id" name="wl_id">
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'modal_confirm.html' %}
+{% endblock %}

@@ -1,0 +1,32 @@
+.cmd_btn{
+    width: 15em;
+    height: 3em;
+    margin: 0.5em;
+    line-height: 2em;
+}
+
+table{
+    width: 100%;
+}
+
+tr{
+    width: 100%;
+}
+
+td{
+
+}
+.cmd_btn_div{
+    padding: 0px 0px 0px 40px;
+}
+
+dl, ol, ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.img-size {
+    max-width: 15%;
+    height: auto;
+    margin: 1em;
+}

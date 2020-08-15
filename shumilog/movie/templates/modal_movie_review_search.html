@@ -1,0 +1,54 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="modal_movie_list_search">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">映画 レビュー 検索</h4>
+                </div>
+                <div class="card-body">
+                    <form name="movie_review_search_form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>視聴日</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.watched_date_from|add_class:"watched_date_search" }}
+                                ～
+                                {{ form.watched_date_to|add_class:"watched_date_search" }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>映画タイトル</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.movie_title }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong><label>点数</label></strong>
+                            </div>
+                            <div class="col-8">
+                                {{ form.movie_score_from|add_class:"movie_score_search" }} 点
+                                ～
+                                {{ form.movie_score_to|add_class:"movie_score_search" }} 点
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-dark clear_btn float-right" onclick="movie_review_search_clear(); return false;">
+                            クリア
+                        </button>
+                        <button type="button" class="btn btn-danger search_btn_modal float-right" onclick="movie_review_search(); return false;">
+                            検索
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
